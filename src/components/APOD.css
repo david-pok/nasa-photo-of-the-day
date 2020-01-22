@@ -1,0 +1,7 @@
+.apod {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  overflow: hidden;
+}
