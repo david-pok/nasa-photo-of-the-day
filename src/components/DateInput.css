@@ -1,0 +1,42 @@
+.input-form {
+  background-color: white;
+  width: 45%;
+  margin-top: 600px;
+  opacity: 0.9;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  animation-duration: 3s;
+  animation-name: slideright;
+}
+
+.input-form form {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 2px;
+  margin: 3px;
+  padding: 3px;
+}
+
+@keyframes slideright {
+  from {
+    margin-left: -100%;
+  }
+
+  to {
+    margin-left: 0;
+  }
+}
+
+.input-text {
+  width: 15%;
+}
+
+.submit-btn {
+  font-family: "Orbitron", sans-serif;
+}
+
+.input-section {
+  font-family: "Orbitron", sans-serif;
+  width: 25%
+}

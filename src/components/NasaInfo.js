@@ -3,7 +3,7 @@ import "./NasaInfo.css";
 import Moment from "react-moment";
 
 const NasaInfo = props => {
-  console.log("nasaINFO props", props);
+  // console.log("nasaINFO props", props);
   const info = props.data;
 
 
