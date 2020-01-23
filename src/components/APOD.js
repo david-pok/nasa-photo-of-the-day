@@ -1,22 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
 import "./APOD.css";
 import NasaInfo from "./NasaInfo";
 import DateInput from "./DateInput";
+import Moment from "react-moment";
 
-const NASA_URL = process.env.REACT_APP_NASA_API;
 const NASA_KEY = process.env.REACT_APP_API_KEY;
-// console.log("url", NASA_URL);
-// console.log("key", NASA_KEY);
+
+const ApodContainer = styled.div`
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  overflow: hidden;
+  
+`;
+
+const NoBGmsg = styled.h3`
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 2px;
+`;
 
 const APOD = () => {
+
+  const moment = require('moment');
+
   const [picURL, setPicURL] = useState();
   const [nasaInfo, setNasaInfo] = useState([]);
-  const [dateInput, setDateInput] = useState();
+  const [dateInput, setDateInput] = useState(moment().format("YYYY-MM-DD"));
 
   useEffect(() => {
     axios
-      .get(`https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`)
+      .get(`https://api.nasa.gov/planetary/apod?date=${dateInput}&api_key=${NASA_KEY}`)
       .then(response => {
         // console.log("nasa response", response.data);
         setPicURL(response.data.hdurl);
@@ -25,7 +42,7 @@ const APOD = () => {
       .catch(error => {
         console.log("custom error message goes here", error);
       });
-  }, []);
+  }, [dateInput]);
 
   const getPhoto = date => {
     axios
@@ -42,20 +59,24 @@ const APOD = () => {
     e.preventDefault();
     // console.log(e.target);
     let dateFromInput = e.target[0].value;
-    setDateInput(dateFromInput);
-    getPhoto(dateFromInput);
+    if (!moment(dateFromInput,'YYYY-MM-DD').isValid()) {
+      alert('Please enter a correct date/format.');
+    } else {
+      setDateInput(dateFromInput);
+    }
+    // getPhoto(dateFromInput);
   };
 
+  if (!nasaInfo.media_type) return <NoBGmsg>Loading...</NoBGmsg>;
+
   if (nasaInfo.media_type !== "image")
-    return (
-      <h3>Sorry, no photo for today. Check back tomorrow for a new photo.</h3>
-    );
+    return <NoBGmsg>Sorry, no photo for this day.</NoBGmsg>;
 
   return (
-    <div className="apod" style={{ backgroundImage: `url(${picURL})` }}>
+    <ApodContainer style={{ backgroundImage: `url(${picURL})` }}>
       <NasaInfo data={nasaInfo} />
       <DateInput changeDate={changeDate} />
-    </div>
+    </ApodContainer>
   );
 };
 

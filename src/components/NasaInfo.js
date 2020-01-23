@@ -6,11 +6,11 @@ const NasaInfo = props => {
   // console.log("nasaINFO props", props);
   const info = props.data;
 
-
   return (
     <div className="pic-title">
       <p>
-        Current date: <Moment format="YYYY/MM/DD" />
+        Current date: <br />
+        <Moment format="YYYY-MM-DD" />
       </p>
       <p>{info.title}</p>
     </div>

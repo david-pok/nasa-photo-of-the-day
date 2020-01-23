@@ -1,4 +1,4 @@
-.input-form {
+/* .input-form {
   background-color: white;
   width: 45%;
   margin-top: 600px;
@@ -7,7 +7,7 @@
   border-bottom-right-radius: 10px;
   display: flex;
   flex-direction: column;
-  animation-duration: 3s;
+  animation-duration: 6s;
   animation-name: slideright;
 }
 
@@ -16,7 +16,7 @@
   letter-spacing: 2px;
   margin: 3px;
   padding: 3px;
-}
+} */
 
 @keyframes slideright {
   from {
@@ -38,5 +38,6 @@
 
 .input-section {
   font-family: "Orbitron", sans-serif;
-  width: 25%
+  width: 25%;
+  /* margin-bottom: 10px; */
 }
