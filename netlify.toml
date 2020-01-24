@@ -1,0 +1,8 @@
+[build]
+base = "nasa-apod/"
+publish = "nasa-apod/build/"
+command = "yarn build"
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

@@ -40,20 +40,20 @@ const APOD = () => {
         setNasaInfo(response.data);
       })
       .catch(error => {
-        console.log("custom error message goes here", error);
+        console.log("Error getting response from API", error);
       });
   }, [dateInput]);
 
-  const getPhoto = date => {
-    axios
-      .get(
-        `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${NASA_KEY}`
-      )
-      .then(response => {
-        setPicURL(response.data.hdurl);
-        setNasaInfo(response.data);
-      });
-  };
+  // const getPhoto = date => {
+  //   axios
+  //     .get(
+  //       `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${NASA_KEY}`
+  //     )
+  //     .then(response => {
+  //       setPicURL(response.data.hdurl);
+  //       setNasaInfo(response.data);
+  //     });
+  // };
 
   const changeDate = e => {
     e.preventDefault();
